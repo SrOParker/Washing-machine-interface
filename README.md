@@ -8,4 +8,4 @@ Interface of an accessible and usable washing machine, made for the UA subject o
 
 <p align="center">HTML, CSS and JavaScript</p>
 
-<p align="center"><img src="./caratulaFro.png" /></p>
+<p align="center"><img src="./lavadora-photo.png" /></p>
