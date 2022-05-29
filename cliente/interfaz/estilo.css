@@ -1,0 +1,411 @@
+:root {
+    --colorApagado: #000000; /*Color apagado de la pantalla*/
+    --colorEncendido: #212121; /*Color encendido de la pantalla*/
+    --colorTexto: #ffffff;/*Color de todos los textos principales*/
+    --fuentePrincipal: 'Titillium Web', sans-serif; 
+    --colorGris: #979797; /*Color seleccionado*/
+    --colorGrisApagado: rgb(59, 59, 59);
+}
+/*Body base*/
+body{
+    margin: 0;
+    background-color:var(--colorEncendido);
+    font-family: var(--fuentePrincipal);
+}
+
+/*Botones*/
+.boton{
+    color: var(--colorTexto);
+    background: none;
+    border:0;
+    outline:none;
+}
+
+
+/*Página apagado*/
+#divEncender{
+    background-color: var(--colorApagado);
+    padding-top: 15px;
+    padding-bottom: 220px;
+    width:100%;
+    height:100%;
+
+}
+#botonEncender{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    padding:0;
+    margin-top:160pt;
+    font-size:90px;
+}
+
+/*Común en las páginas*/
+#divHeader, #cabeza{
+    display:flex;
+    flex-wrap: nowrap;
+}
+#cabeceraDer{
+    width:100%;
+    text-align: right;
+}
+#botonApagar{
+    margin-left: 15px;
+}
+#botonApagar,#botonFav,#botonPlay, #siguientePaso, #botonPause, #botonEnd{
+    font-size: 40px;
+    margin-top: 15px;
+}
+#botonFav,#botonPlay{
+    justify-content: right;
+    margin-right:15px;
+}
+
+#siguientePaso{
+    margin-left: 1000px;
+    margin-top: -30px;
+}
+
+/*Página principal, nadamás encender*/
+#pantallaEncendida{
+    width:100%;
+    height:100%;
+}
+
+#divLyS{
+    width:100%;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:center;
+    margin-top: 120px;
+}
+#divLyS label{
+    width:40%;
+    text-align: center;
+}
+#divLyS label , #divLyS label button{
+    font-size: 50px;
+}
+
+/*Puerta abierta pantalla de peso*/
+#puertaAbierta{
+    width:100%;
+    display: flex;
+    flex-wrap: nowrap;
+    font-size: 30px;
+}
+.barraI{
+    width:30px;
+    height:200px;
+    background-color:var(--colorTexto);
+    border:1px solid;
+    border-color: var(--colorTexto);
+    margin-left: 100px;
+    margin-top: 150px;
+}
+.barraInteriorI{
+    width:100%;
+    /*height:180px;*/ /*valor a cambiar para cambiar el contenido de las barras*/
+    background-color:var(--colorEncendido);
+    display:block;
+    
+}
+
+.barraD{
+    width:30px;
+    height:200px;
+    background-color:var(--colorTexto);
+    border:1px solid;
+    border-color: var(--colorTexto);
+    margin-left: 50px !important;
+    margin-top: 150px;
+}
+.barraInteriorD{
+    width:100%;
+    /*height:120px;*/ /*valor a cambiar para cambiar el contenido de las barras*/
+    background-color:var(--colorEncendido);
+    display:block;
+}
+
+#b-izq{
+    width:20%;
+
+}
+#b-izq i {
+    margin-left: 105px;
+    margin-top: 15px;
+}
+
+#b-cen{
+    width:60%;
+    margin-top: 190px;
+}
+
+#ruedaKilos{
+    margin-left: 220px;
+    transform: scale(3.2);
+}
+
+#b-der{
+    width:20px;
+}
+#b-der img{
+    margin-left: 51px;
+    margin-top: 10px;
+}
+
+#volver{
+    font-size: 40px;
+    font-style: none;
+    color :var(--colorTexto);
+    margin-left: 15px;
+
+}
+.botonTexto{
+    font-family: var(--fuentePrincipal);
+    color: var(--colorTexto);
+    background: none;
+    font-size: 35px;
+    margin-bottom: 37px;
+    width: 35% !important;
+    border:0;
+    outline:none;
+    text-align: left;
+    margin-right: 5%;
+    margin-left: 10%;
+}
+
+#programasL, #programasS{
+    margin-top: 50px;
+    text-align: left;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 150px;
+}
+.titulosPrograma{
+    color: var(--colorTexto);
+    font-family: var(--fuentePrincipal);
+    font-size: 50px;
+    margin-top: 0px;
+    margin-left: 350px;
+    
+    margin-bottom: 0;
+}
+#configLavado{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+#configLavado2, #configSecado2{
+    width: 7% !important;
+    margin-left: 5%;
+}
+.botonConfig, .botonConfig1{
+    font-family: var(--fuentePrincipal);
+    color: var(--colorTexto);
+    background: none;
+    font-size: 20px;
+    margin-bottom:55px !important;
+    width: 150% !important; 
+    border:0;
+    outline:none;
+    margin-left: 60px;
+    
+}
+
+#temperaturaOpt{
+    margin-top: 40px;
+}
+#temperaturaOpt2{
+    margin-top: 40px;
+    margin-right: 10px;
+}
+#revolOpt{
+    width: 200% !important;
+}
+#tempSelect, #timeSelect, #revSelect, #tempSelect2, #timeSelect2, #humSelect2{
+   
+    margin-top: 50px;
+    width: 7%;
+    margin-left: 5%;
+}
+
+#lavarSeleccionado{
+    list-style: none;
+    display: flex;
+    flex-wrap: nowrap;
+    color : var(--colorGris);
+    font-family: var(--fuentePrincipal);
+    font-size: 20px;
+    margin-left: 50px;
+    
+    width: 50%;
+    margin-top: 100px;
+    
+}
+#secarSeleccionado{
+
+    list-style: none;
+    display: flex;
+    flex-wrap: nowrap;
+    color : var(--colorGris);
+    font-family: var(--fuentePrincipal);
+    font-size: 20px;
+    margin-left: auto;
+    width: 50%;
+    margin-top: 100px;
+}
+#lavarSeleccionado li , #secarSeleccionado li{
+    width: 30px;
+    text-align: center;
+}
+#select1, #select2, #select3, #select11, #select22, #select33  {
+    width: 100px !important;
+}
+#programQuit{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.titleNombreSelectL{
+    color: var(--colorGris) !important;
+    font-size:30px !important;
+    font-family: var(--fuentePrincipal);
+    width: 50% !important;
+    margin-left: 50px;
+    margin-top: -20px;
+}
+#labelsSelect{
+    display: flex;
+    flex-flow: wrap-reverse;
+    width: 100%;
+    
+}
+#pselecNombre, #pselecNombre2{
+    /*margin-top: 50px;*/
+    width:50%;
+}
+#pselecNombre2{
+    margin-left: 445px;
+    margin-bottom: -25px;
+}
+#botonesQuitar{
+    text-align: right;
+    width: 50%;
+    margin-left: 50px;
+    margin-top: 10px;
+    
+}
+#quitarSeleccion{
+    color: var(--colorGris);
+    font-size:50px;
+    font-family: var(--fuentePrincipal);
+    width: 20%;
+    margin-left: 150px;
+
+}
+#quitarSeleccion2{
+    color: var(--colorGris);
+    font-size:50px;
+    font-family: var(--fuentePrincipal);
+    width:20%;
+    margin-left: 215px;
+
+}
+
+#errorPuertaAbierta{
+    font-family: var(--fuentePrincipal);
+    color: var(--colorTexto);
+    font-size: 40px;
+    width: 100%;
+    text-align: center;
+    margin-top: 225px;
+}
+#configSecado2{
+    margin-top: -15px;
+}
+
+#seleccionesAmbosProgramas{
+    margin-top: -10px;
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    text-align: center;
+}
+
+#botonPause, #botonEnd{
+    margin-left: 850px;
+
+}
+
+#reloj{
+    width: 100%;
+    text-align: center;
+}
+#tiempoRestante{
+    width: 100%;
+    text-align: center;
+    color: var(--colorTexto);
+    font-family: var(--fuentePrincipal);
+    font-size: 85px;
+    margin-top: 15px;
+    margin-bottom: 10px;
+}
+#progreso{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+}
+#circuloLavado{
+    width: 29%;
+    text-align: right;
+    font-size: 25px;
+    color: var(--colorTexto);
+}
+#barracentral{
+    margin-left: 1%;
+    margin-right: 1%;
+    width: 40%;
+    text-align: center;
+    margin-top: 10px;
+    height: 2px;
+    border-top: 4px solid var(--colorTexto);
+}
+#circuloSecado{
+    width: 29%;
+    text-align: left;
+    font-size: 25px;
+    color: var(--colorTexto);
+}
+
+#programas{
+    width: 100%;display: flex; flex-wrap: nowrap;
+}
+
+#programas p, #tiempos p {
+    width: 50%;
+    text-align: center;
+}
+
+#p-textoProgramas{
+    margin-left: 55px;
+}
+
+#tiempos{
+    color: var(--colorGris);
+    font-family: var(--fuentePrincipal);
+    font-size:30px;
+    width: 100%;display: flex; flex-wrap: nowrap;
+}
+#tiempo1{
+    margin-left: 27px;
+}
+#tiempo2{
+    margin-left: -45px;
+}
+#tiempos p {
+    margin-top: 0;
+}

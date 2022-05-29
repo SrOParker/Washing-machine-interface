@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+	<meta charset="utf-8">
+	<title>Interfaz de Lavadora</title>
+	<script src="../electro.js"></script>
+	<script src="main.js"></script>
+	<link href= "estilo.css" rel="stylesheet" type="text/css">
+
+	<link href="peso.css" rel="stylesheet">
+	<!--Iconos-->
+	<script src="https://kit.fontawesome.com/c701b4afa2.js" crossorigin="anonymous"></script>
+	<!--Fuente-->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Titillium+Web&display=swap" rel="stylesheet">
+</head>
+
+<body>
+	<div id ="enproceso" style="display: none;">
+		<div id="cabeza">
+			<button class="boton" id="botonApagar" onclick="return encenderYapagarLavadora();"><i class="fas fa-power-off"></i></button>
+			<button class="boton" id="botonPause" onclick="return cortarProceso();"><i class="fas fa-pause"></i></button>
+			<button style="display:none;" class="boton" id="botonEnd" onclick="return volverAinicio();"><i class="fas fa-step-forward"></i></button>
+		</div>
+		<div id="reloj"><p id="tiempoRestante"></p></div>
+		<div id="conjunto">
+			<div id="progreso">
+				<i id="circuloLavado" class="fas fa-circle"></i>
+				<div id="barracentral"></div>
+				<i id="circuloSecado" class="fas fa-circle"></i>
+			</div>
+			<div id="programas">
+				<p id = "p-textoProgramas1" class="botonTexto">Lavado</p>
+				<p id = "p-textoProgramas" class="botonTexto">Secado</p>
+			</div>
+			<div id="tiempos">
+				<p id="tiempo1" class="">0:32</p>
+				<p id="tiempo2" class="">1:00</p>
+			</div>
+		</div>
+
+	</div>
+	<div id="berror" style="display: none;"></div>
+	<div id="todo">
+
+	
+	<!--PANTALLA DE INCLUIR ROPA DETERGENTE SUAVIZANTE ...-->
+	<div class="puertaAbierta" id="puertaAbierta" style ="display:none;">
+		<div id="b-izq" class="boton"><div class = "barraI"><div class="barraInteriorI" ></div></div><i class="fas fa-prescription-bottle"></i></div>
+		<div id="b-cen">
+			<div id ="ruedaKilos" class="progress-circle p0">
+				<span id="kilos"></span>
+				<div id ="ruedaKilos1" class="left-half-clipper">
+					<div id="ruedaKilos2" class="first50-bar"></div>
+					<div id="ruedaKilos3" class="value-bar"></div>
+				</div>
+			</div>
+		</div>
+		<div id="b-der" class="boton"><div class = "barraD"><div class="barraInteriorD"></div></div><img src="img/suavizante.png" width="150%"></div>
+	</div>
+	<!--PANTALLA DE ENCENDIDO ...-->
+	<div id="pantallaEncendida" style="display:none"> 
+		<div id="divHeader">
+			<button class="boton" id="botonApagar" onclick="return encenderYapagarLavadora();"><i class="fas fa-power-off"></i></button>
+			<div id="cabeceraDer">
+				<button class="boton" id="botonFav" onclick="return favorito();"><i class="fas fa-star"></i></button>
+				<button class="boton" id="botonPlay" onclick="return lavar();" style="color:rgb(61, 61, 61)"><i class="fas fa-play"></i></button>
+			</div>
+		</div>
+
+		<div id ="divLyS">
+			<label class="boton" for="ProgamarLavado">Lavado<br><button onclick="return irALavado()" id="ProgramarLavado" class="boton"><i class="far fa-plus-square"></i></button></label>
+			<label class="boton" for="ProgamarSecado">Secado<br><button onclick="return irASecado()" id="ProgramarSecado" class="boton"><i class="far fa-plus-square"></i></button></label>
+			<div id="programQuit" style="display: none;">
+				<div id="labelsSelect">
+					<label class="titleNombreSelectL" id="pselecNombre"></label>
+					<label class="titleNombreSelectL" id="pselecNombre2"></label>
+				</div>
+				<div id="botonesQuitar" style= "width: 100%; display:flex; flex-wrap: nowrap;">
+					<button id="quitarSeleccion" class = "boton" onclick="return quitarSeleccionLavado()"><i class="far fa-times-circle"></i></button>
+					<button id="quitarSeleccion2" class = "boton" onclick="return quitarSeleccionSecado()"><i class="far fa-times-circle"></i></button>
+				</div>
+				<!--<button id="quitarSeleccion" class = "boton"><i class="far fa-times-circle"></i></button>-->
+			</div>
+			<div id ="seleccionesAmbosProgramas">
+			<ul id = "lavarSeleccionado" style = "display:none;">
+				<li id="select1"></li>
+				<li>|</li>
+				<li id="select2"></li>
+				<li>|</li>
+				<li id="select3"></li>
+			</ul>
+			<ul id = "secarSeleccionado" style = "display:none;">
+				<li id="select11"></li>
+				<li>|</li>
+				<li id="select22"></li>
+				<li>|</li>
+				<li id="select33"></li>
+			</ul>
+			</div>
+		</div>
+		<!--
+		<div><button id="bloqueo"></button></div>
+		<div><label>Detergente: <input id="detergente" type="number" value="4" /></label></div>
+		<div><label>Suavizante: <input id="suavizante" type="number" value="3" /></label></div>
+		<div><label>Agua: <input id="nivelAgua" type="number" value="70" /></label></div>
+		<div><label>Temperatua lavado: <input id="temperaturaLavado" type="number" value="50" /></label></div>
+		<div><label>Revoluciones lavado: <input id="revolucionesLavado" type="number" value="100" /></label></div>
+		<div><label>Tiempo lavado: <input id="tiempoLavado" type="number" value="30" /></label></div>
+		<div><label>Revoluciones centrifugado: <input id="revolucionesCentrifugado" type="number" value="800" /></label></div>
+		<div><label>Tiempo centrifugado: <input id="tiempoCentrifugado" type="number" value="20" /></label></div>
+		<div><button id="lavar">Lavar</button></div>
+		-->
+	</div>
+	<!--PANTALLA DE LAVADO ...-->
+	<div id="programaLavado" style="display:none;" >
+		<div id="cabeza">
+			<button class="boton" id="botonApagar" onclick="return encenderYapagarLavadora();"><i class="fas fa-power-off"></i></button>
+			<p id ="lavTitle" class="titulosPrograma">Lavado</p>
+			<p id="secTitle" class="titulosPrograma" style="display: none;">Secado</p>
+		</div>
+		<div id="configLavado">
+            <!--CONTENIDO DE LAVADO-->
+
+			<div id="programasL">
+				<button id="p0" class=botonTexto onclick="return seleccionLavado(0);"> Sintéticos</button>
+				<button id="p1" class=botonTexto onclick="return seleccionLavado(1);"> Delicados</button><br>
+				<button id="p2" class=botonTexto onclick="return seleccionLavado(2);"> Algodón</button>
+				<button id="p3" class=botonTexto onclick="return seleccionLavado(3);"> Tejidos Gruesos</button><br>
+				<button id="p4" class=botonTexto onclick="return seleccionLavado(4);"> Quita Manchas</button>
+				<button id="p5" class=botonTexto onclick="return seleccionLavado(5);"> Rápido</button><br>
+				<button id="p6" class=botonTexto onclick="return seleccionLavado(6);"> Centrifugado</button>
+				<button id="p7" class=botonTexto onclick="return seleccionLavado(7);"> Silencioso</button><br>
+			</div>
+			<div id="configLavado2" style="display: none;">
+				<button id="temperaturaOpt" class="botonConfig" onclick="return opcLavadoTemp()"></button>
+				<button id="tiempoOpt" class="botonConfig" onclick="return opcLavadoTime()"></button>
+				<button id="revolOpt" class="botonConfig" onclick="return opcLavadoRev()"></button>
+				<button id="colOpt" class="botonConfig" onclick=""></button>
+			</div>
+			<div id="tempSelect" style = "display:none;">
+				<button  class="botonConfig1" onclick="return cambioTempLavado(25);">25ºC</button>
+				<button  class="botonConfig1" onclick="return cambioTempLavado(30);">30ºC</button>
+				<button  class="botonConfig1" onclick="return cambioTempLavado(40);">40ºC</button>
+				<button  class="botonConfig1" onclick="return cambioTempLavado(50);">50ºC</button>
+			</div>
+			<div id="timeSelect" style = "display:none;">
+				<button  class="botonConfig1" onclick="return cambioTimeLavado(30);">0:30h</button>
+				<button  class="botonConfig1" onclick="return cambioTimeLavado(60);">1:00h</button>
+				<button  class="botonConfig1" onclick="return cambioTimeLavado(90);">1:30h</button>
+				<button  class="botonConfig1" onclick="return cambioTimeLavado(120);">2:00h</button>
+			</div>
+			<div id="revSelect" style = "display:none;">
+				<button  class="botonConfig1" onclick="return cambioRevLavado(300);">300 rpm</button>
+				<button  class="botonConfig1" onclick="return cambioRevLavado(600);">600 rpm</button>
+				<button  class="botonConfig1" onclick="return cambioRevLavado(900);">900 rpm</button>
+				<button  class="botonConfig1" onclick="return cambioRevLavado(1100);">1100 rpm</button>
+			</div>
+
+			<!--CONTENIDO DE SECADO-->
+
+			<div id="programasS" style="display:none;">
+				<button id="ps0" class=botonTexto onclick="return seleccionSecado(0);"> Sintéticos</button>
+				<button id="ps1" class=botonTexto onclick="return seleccionSecado(1);"> Delicados</button><br>
+				<button id="ps2" class=botonTexto onclick="return seleccionSecado(2);"> Algodón</button>
+				<button id="ps3" class=botonTexto onclick="return seleccionSecado(3);"> Tejidos Gruesos</button><br>
+				<button id="ps4" class=botonTexto onclick="return seleccionSecado(4);"> Quita Manchas</button>
+				<button id="ps5" class=botonTexto onclick="return seleccionSecado(5);"> Rápido</button><br>
+				<button id="ps6" class=botonTexto onclick="return seleccionSecado(6);"> Centrifugado</button>
+				<button id="ps7" class=botonTexto onclick="return seleccionSecado(7);"> Silencioso</button><br>
+			</div>
+			<div id="configSecado2" style="display: none;">
+				<button id="temperaturaOpt2" class="botonConfig" onclick="return opcSecadoTemp()"></button>
+				<button id="tiempoOpt2" class="botonConfig" onclick="return opcSecadoTime()"></button>
+				<button id="humedad2" class="botonConfig" onclick="return opcSecadoHum()"></button>
+				<button id="antiarrugas2" class="botonConfig" onclick="return antiarrugasActivado()"></button>
+			</div>
+
+			<div id="tempSelect2" style = "display:none;">
+				<button  class="botonConfig1" onclick="return cambioTempSecado(30);">30ºC</button>
+				<button  class="botonConfig1" onclick="return cambioTempSecado(40);">40ºC</button>
+				<button  class="botonConfig1" onclick="return cambioTempSecado(50);">50ºC</button>
+				<button  class="botonConfig1" onclick="return cambioTempSecado(60);">60ºC</button>
+			</div>
+			<div id="timeSelect2" style = "display:none;">
+				<button  class="botonConfig1" onclick="return cambioTimeSecado(20);">0:20h</button>
+				<button  class="botonConfig1" onclick="return cambioTimeSecado(30);">0:30h</button>
+				<button  class="botonConfig1" onclick="return cambioTimeSecado(60);">1:00h</button>
+				<button  class="botonConfig1" onclick="return cambioTimeSecado(120);">2:00h</button>
+			</div>
+			<div id="humSelect2" style = "display:none;">
+				<button  class="botonConfig1" onclick="return cambioHumSecado(1);"><i class="far fa-sun"></i></button>
+				<button  class="botonConfig1" onclick="return cambioHumSecado(2);"><i class="far fa-sun"></i><i class="far fa-sun"></i></button>
+				<button  class="botonConfig1" onclick="return cambioHumSecado(3);"><i class="far fa-sun"></i><i class="far fa-sun"></i><i class="far fa-sun"></i></button>
+			</div>
+
+		</div>
+
+		<button id = "volver" onclick="return volverDeLavado()" class ="boton"><i class="fas fa-chevron-left"></i></button>
+		<button class="boton" id="siguientePaso" onclick="return siguientePaso1()" style ="display:none;"><i class="far fa-check-circle"></i></button>
+		
+	</div>
+	<div id="divEncender" ><button onclick="return encenderYapagarLavadora();" class="boton" id="botonEncender"><i class="fas fa-power-off"></i></button></div>
+	<script>
+		comprobarPuerta();
+	</script>
+
+	</div>
+</body>
+
+</html>
